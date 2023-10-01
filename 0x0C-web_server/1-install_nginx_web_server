@@ -1,7 +1,24 @@
 #!/usr/bin/env bash
-#install nginx and redirects to holberton school string
-sudo apt-get -y update
-sudo apt-get -y install nginx
-file1=/usr/share/nginx/html/index.html
-sudo bash -c "echo 'Hello World!' > $file1"
-service nginx start
+
+# Check if the script is run with superuser privileges
+if [[ $EUID -ne 0 ]]; then
+    echo "This script must be run as root."
+    exit 1
+fi
+
+# Update package lists and install Nginx
+apt-get -y update
+apt-get -y install nginx
+
+# Create a simple HTML file with "Hello World!"
+echo 'Hello World!' > /var/www/html/index.html
+
+# Restart Nginx using service
+service nginx restart
+
+# Verify that Nginx is running
+if ps aux | grep -q '[n]ginx'; then
+    echo "Nginx is now running and configured as specified."
+else
+    echo "There was an issue starting Nginx. Please check the configuration."
+fi
