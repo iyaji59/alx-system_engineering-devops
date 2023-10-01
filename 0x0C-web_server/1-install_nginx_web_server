@@ -1,10 +1,7 @@
 #!/usr/bin/env bash
-# Installs Nginx with the following configurations:
-# Listens on port 80.
-# Returns a page containing "Hello World!"
-
+#install nginx and redirects to holberton school string
 sudo apt-get -y update
 sudo apt-get -y install nginx
-echo 'Hello World!' > /var/www/html/index.html
-
-sudo service nginx restart
+file1=/usr/share/nginx/html/index.html
+sudo bash -c "echo 'Hello World!' > $file1"
+service nginx start
