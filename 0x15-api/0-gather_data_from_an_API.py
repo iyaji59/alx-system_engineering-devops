@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """gets api"""
-import requests
-from sys import argv
+import requests # for making http requests to get data from the internet
+from sys import argv # for getting command line arguments
 
 
 def todo(userid):
